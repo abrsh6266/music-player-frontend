@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Input, Button } from "antd";
 import { useDispatch } from 'react-redux'
-import { updateMusic } from "../redux/action";
+import { fetchGenres, updateMusic } from "../redux/action";
 interface Props {
   music: any | null;
   show: boolean;
@@ -44,6 +44,7 @@ function MusicUpdateForm({ music, show, onClose }: Props){
         type="primary" 
         onClick={()=>{
           dispatch(updateMusic(music.id,formData));
+          dispatch(fetchGenres());
           onClose();
           }}>
           Update

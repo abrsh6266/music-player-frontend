@@ -1,6 +1,6 @@
 import { Form, Input, Modal } from "antd";
 import { useDispatch } from "react-redux";
-import { addMusic } from "../redux/action";
+import { addMusic, fetchGenres } from "../redux/action";
 
 interface Props {
   visible: boolean;
@@ -25,6 +25,7 @@ function MusicForm({ visible, onCancel }: Props) {
           .then((values) => {
             form.resetFields();
             dispatch(addMusic(values));
+            dispatch(fetchGenres());
           })
           .catch((info) => {
             console.log("Validate Failed:", info);

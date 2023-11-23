@@ -2,7 +2,7 @@ import { FaEdit } from "react-icons/fa";
 import { Heading } from "rebass";
 import { BsTrash } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { deleteMusic } from "../redux/action";
+import { deleteMusic, fetchGenres } from "../redux/action";
 import MusicUpdateForm from "./MusicUpdateForm";
 import { useState } from "react";
 import { Music } from "./MusicCard";
@@ -22,7 +22,10 @@ function ActionIcon({music}:Props) {
         <MusicUpdateForm music={music} show={visible} onClose={handleCancel} />
       </Heading>
       <Heading>
-        <button onClick={()=>{dispatch(deleteMusic(music.id))}}><BsTrash /></button>
+        <button onClick={()=>{
+          dispatch(deleteMusic(music.id))
+          dispatch(fetchGenres());
+          }}><BsTrash /></button>
       </Heading>
     </>
   );
